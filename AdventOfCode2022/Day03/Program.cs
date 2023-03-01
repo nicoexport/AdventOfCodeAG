@@ -16,13 +16,38 @@ foreach (var str in linesArray)
    string firstHalf = str[..halfLength];
    string secondHalf = str[halfLength..];
 
-   IEnumerable<char> duplicates = firstHalf.Intersect(secondHalf);
+   var duplicates = firstHalf.Intersect(secondHalf);
 
    foreach (var duplicate in duplicates)
    {
-      prioritySum += (priorityString.IndexOf(duplicate) + 1);
+      prioritySum += priorityString.IndexOf(duplicate) + 1;
    }
 }
 
+Console.WriteLine("Sum of priority of duplicates:");
 Console.WriteLine(prioritySum);
-Console.WriteLine(priorityString.IndexOf("Z"));
+
+int badgeSum = 0;
+int chunkSize = 3;
+var chunks = Enumerable.Range(0, linesArray.Length / chunkSize)
+   .Select(i => linesArray.Skip(i * chunkSize).Take(chunkSize).ToArray())
+   .ToArray();
+
+foreach (var chunk in chunks)
+{
+   var str0 = chunk[0];
+   var str1 = chunk[1];
+   var str2 = chunk[2];
+
+   IEnumerable<char> commonChars = str0.Intersect(str1).Intersect(str2);
+
+   foreach (var character in commonChars)
+   {
+      badgeSum += priorityString.IndexOf(character) + 1;
+   }
+}
+
+Console.WriteLine("Sum of priorities of badges:");
+Console.WriteLine(badgeSum);
+
+
