@@ -1,17 +1,18 @@
 ﻿const string INPUT_FOLDER = "input";
 const string INPUT_FILE = "input02.txt";
-string path = Path.Combine(INPUT_FOLDER, INPUT_FILE);
+var path = Path.Combine(INPUT_FOLDER, INPUT_FILE);
 
 IEnumerable<string> lines = File.ReadLines(path);
 IEnumerable<string> linesArray = lines as string[] ?? lines.ToArray();
 
-int score = 0;
+var score = 0;
 
 foreach (var line in linesArray)
 {
    score += CalcPickScore(line, Strategy.PartOne);
    score += CalcResultScore(line, Strategy.PartOne);
 }
+
 Console.WriteLine("Part One. " + score);
 
 score = 0;
@@ -21,6 +22,7 @@ foreach (var line in linesArray)
    score += CalcPickScore(line, Strategy.PartTwo);
    score += CalcResultScore(line, Strategy.PartTwo);
 }
+
 Console.WriteLine("Part Two. " + score);
 
 
@@ -73,17 +75,16 @@ int CalcResultScore(string line, Strategy strat)
          "A X" => SCORE_DRAW,
          "A Y" => SCORE_WIN,
          "A Z" => SCORE_LOSS,
-         
+
          "B X" => SCORE_LOSS,
          "B Y" => SCORE_DRAW,
          "B Z" => SCORE_WIN,
-         
+
          "C X" => SCORE_WIN,
          "C Y" => SCORE_LOSS,
          "C Z" => SCORE_DRAW,
-         
-         _ => throw new NotImplementedException(),
-         
+
+         _ => throw new NotImplementedException()
       },
       Strategy.PartTwo => letters[1] switch
       {
@@ -96,7 +97,7 @@ int CalcResultScore(string line, Strategy strat)
    };
 }
 
-enum Strategy
+internal enum Strategy
 {
    PartOne,
    PartTwo

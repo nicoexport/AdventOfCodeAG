@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="input"/>
+      <Folder Include="input" />
     </ItemGroup>
 
 </Project>
