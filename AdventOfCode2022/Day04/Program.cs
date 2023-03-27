@@ -13,6 +13,7 @@ foreach (var line in linesArray)
    var pair = line.Split(',');
    var first = pair[0].Split('-');
    var second = pair[1].Split('-');
+   
    var firstLower = int.Parse(first[0]);
    var firstUpper = int.Parse(first[1]);
    var secondLower = int.Parse(second[0]);

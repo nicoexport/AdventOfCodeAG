@@ -26,9 +26,9 @@ Console.WriteLine(prioritySum);
 
 var badgeSum = 0;
 var chunkSize = 3;
-var chunks = Enumerable.Range(0, linesArray.Length / chunkSize)
-   .Select(i => linesArray.Skip(i * chunkSize).Take(chunkSize).ToArray())
-   .ToArray();
+IEnumerable<string[]> chunks = Enumerable.Range(0, linesArray.Length / chunkSize)
+   .Select(i => linesArray.Skip(i * chunkSize).Take(chunkSize).ToArray());
+
 
 foreach (var chunk in chunks)
 {
